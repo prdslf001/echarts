@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dome</title>
+</head>
+
+<body>
+    <button id="content">连接</button>
+    <button id="send">发送数据</button><br />
+    从服务器接受的数据如下：<br />
+    <span id="reve"></span>
+</body>
+<script>
+    const content = document.querySelector('#content');
+    const send = document.querySelector('#send');
+    const reve = document.querySelector('#reve');
+    let ws = null;
+    content.onclick = function () {
+        // ws = new WebSocket('ws://localhost:9999');
+        // ws = new WebSocket('ws://localhost:9998')
+        ws = new WebSocket('ws://127.0.0.1:9999');
+        ws.onopen = () => {
+            console.log('success......')
+        }
+
+        ws.onclose = () => {
+            console.log('loss......')
+        }
+
+        ws.onmessage = meg => {
+            console.log('接受的服务器信息是：' + meg)
+            reve.innerHTML = meg.data
+        }
+    }
+
+    send.onclick = function () {
+        ws.send(JSON.stringify({
+            action: 'getData',
+            socketType: 'trendData',
+            charName: 'trend',
+            value: ''
+        }))
+    }
+    // let ws;
+
+    // content.onclick = function () {
+    //     try {
+    //         // 如果已存在连接，先关闭
+    //         if (ws) {
+    //             ws.close();
+    //         }
+
+    //         ws = new WebSocket('ws://127.0.0.1:9999');
+
+    //         ws.onopen = () => {
+    //             console.log('WebSocket连接成功');
+    //         }
+
+    //         ws.onclose = (event) => {
+    //             console.log('WebSocket连接关闭，代码:', event.code, '原因:', event.reason);
+    //         }
+
+    //         ws.onerror = (error) => {
+    //             console.error('WebSocket错误:', error);
+    //         }
+
+    //         ws.onmessage = (event) => {
+    //             console.log('收到服务器消息:', event.data);
+    //         }
+    //     } catch (error) {
+    //         console.error('创建WebSocket连接失败:', error);
+    //     }
+    // }
+
+    // send.onclick = function () {
+    //     try {
+    //         if (!ws) {
+    //             console.error('WebSocket未初始化');
+    //             return;
+    //         }
+
+    //         if (ws.readyState !== WebSocket.OPEN) {
+    //             console.error('WebSocket未连接，当前状态:', ws.readyState);
+    //             return;
+    //         }
+
+    //         ws.send('前端发送的信息....');
+    //     } catch (error) {
+    //         console.error('发送消息失败:', error);
+    //     }
+    // }
+
+</script>
+
+</html>
