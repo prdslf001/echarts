@@ -1,22 +1,19 @@
 const Koa = require('koa');
 const app = new Koa();
 
-const middlewareDuration = require('./middleware/responseDuration')
-app.use(middlewareDuration)
+const middlewareDuration = require('./middleware/responseDuration');
+app.use(middlewareDuration);
 
-const middlewareHeader = require('./middleware/responseHeader')
-app.use(middlewareHeader)
+const middlewareHeader = require('./middleware/responseHeader');
+app.use(middlewareHeader);
 
-const middlewareData = require('./middleware/responseData')
-app.use(middlewareData)
+const middlewareData = require('./middleware/responseData');
+app.use(middlewareData);
 app.listen(3000);
 
+const WebSocketService = require('./service/webSocket_service');
 
-const WebSocketService = require('./service/webSocket_service')
-
-WebSocketService.listen()
-
-
+WebSocketService.listen();
 
 // const WebSocket = require('ws');
 // const wss = new WebSocket.Server({
@@ -30,8 +27,6 @@ WebSocketService.listen()
 //         client.send('服务端发送的数据')
 //     })
 // })
-
-
 
 // const WebSocket = require("ws")
 // const wss = new WebSocket.Server({

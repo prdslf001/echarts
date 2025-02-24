@@ -27,9 +27,7 @@ export default class SocketService {
     }
 
     // 定义回调映射的接口
-    private callBackMapping: {
-        [key: string]: (data: any) => void
-    } = {};
+    private callBackMapping: { [key: string]: (data: any) => void} = {};
 
 
     // 注册回调
@@ -43,10 +41,7 @@ export default class SocketService {
     // }
 
     // 添加参数类型和返回值类型
-    public registerCallback(
-        socketType: string,
-        callBack: (data: any) => void
-    ): void {
+    public registerCallback( socketType: string, callBack: (data: any) => void): void {
         this.callBackMapping[socketType] = callBack;
     }
 

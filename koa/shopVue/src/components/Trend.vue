@@ -82,8 +82,8 @@ const initEcharts = ()=>{
 // }
 
 
-// webScoket注册调用的getData方法；
 
+// webScoket注册调用的getData方法；
 const getData = (ret)=>{
     console.log(ret)
     dataResult.value = ret;
@@ -161,8 +161,6 @@ if (socket) {
     socket.registerCallback('trendData',  getData)
     console.log(socket)
 }
-
-
 
 
 onMounted(()=>{
