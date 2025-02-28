@@ -90,6 +90,8 @@ export default class SocketService {
                         // console.log(realData)
                         // this.callBackMapping[socketType].call(this, realData)
                         this.callBackMapping[socketType](realData); //这里不加this也可以；
+                    } else if (action === 'fullScreen') {
+                        this.callBackMapping[socketType](recvData);
                     }
                 }
             };
